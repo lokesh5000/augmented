@@ -3,7 +3,7 @@ module.exports = {
   title: 'mind-ar-js',
   tagline: 'web augmented reality - augmented images',
   url: 'https://arpic.in',
-  baseUrl: '/mind-ar-js-doc/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.png',
