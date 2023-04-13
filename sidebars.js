@@ -1,18 +1,18 @@
 module.exports = {
   docs: [
-    {
+    /*{
       type: 'doc',
       id: 'home'
     },
-    {
+    /*{
       type: 'doc',
       id: 'installation'
     },
-    {
+    /*{
       type: 'doc',
       id: 'installation-v1-1-x'
     },
-    {
+   /* {
       type: 'category',
       label: 'Image Tracking Quick Start',
       collapsed: true,
@@ -26,7 +26,7 @@ module.exports = {
 	'quick-start/tracking-config',
       ]
     },
-    {
+   /* {
       type: 'category',
       label: 'Image Tracking Examples',
       collapsed: true,
@@ -65,7 +65,7 @@ module.exports = {
 	'face-tracking-examples/events-handling',
       ],
     },
-    {
+    /*{
       type: 'category',
       label: 'More Examples',
       collapsed: true,
@@ -82,7 +82,7 @@ module.exports = {
       id: 'core-api'
     },
     */
-    /*{
+    {
       type: 'category',
       label: 'Tools',
       collapsed: false,
