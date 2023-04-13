@@ -70,24 +70,7 @@ module.exports = {
     */
 	  
 	  
-	  {
-      type: 'category',
-      label: 'Page generation',
-      collapsed: true,
-      items: [
 	
-	'examples/basic',
-	
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Tools',
-      collapsed: true,
-      items: [
-	'tools/compile'
-      ]
-    },
     /*
     {
       type: 'category',
