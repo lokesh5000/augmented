@@ -82,7 +82,7 @@ module.exports = {
       id: 'core-api'
     },
     */
-    {
+    /*{
       type: 'category',
       label: 'Tools',
       collapsed: false,
