@@ -26,21 +26,7 @@ module.exports = {
 	'quick-start/tracking-config',
       ]
     },
-   /* {
-      type: 'category',
-      label: 'Image Tracking Examples',
-      collapsed: true,
-      items: [
-	'examples/summary',
-	'examples/minimal',
-	'examples/basic',
-	'examples/multi-targets',
-	'examples/multi-tracks',
-	'examples/custom-ui',
-	'examples/events-handling',
-	'examples/interative',
-      ]
-    },
+   
     {
       type: 'category',
       label: 'Face Tracking Quick Start',
@@ -82,6 +68,18 @@ module.exports = {
       id: 'core-api'
     },
     */
+	  
+	  
+	  {
+      type: 'category',
+      label: 'Page generation',
+      collapsed: true,
+      items: [
+	
+	'examples/basic',
+	
+      ]
+    },
     {
       type: 'category',
       label: 'Tools',
