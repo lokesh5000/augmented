@@ -1,12 +1,4 @@
----
-id: basic 
-title: Basic 
-sidebar_label: Basic 
----
 
-
-<code>
-{`
 <html>
 <head>
   <style type="text/css" media="screen"> <!-- Style the template -->
@@ -97,6 +89,5 @@ function createNewWindow() {
   </form>
 </body>
 </html>
-`}
-</code>
+
 
