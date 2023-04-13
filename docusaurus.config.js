@@ -11,9 +11,9 @@ module.exports = {
   projectName: 'mind-ar-js-doc', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'MindAR - Documentation',
+      title: 'AR PIC',
       logo: {
-        alt: 'MindAR',
+        alt: 'ARPIC',
         src: 'img/logo.png',
       },
     },
