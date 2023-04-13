@@ -4,47 +4,98 @@ title: Basic
 sidebar_label: Basic 
 ---
 
-import {customFields} from '/docusaurus.config.js';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import cardImage from '@site/static/img/demo/card.png'
 
-This is a very typical example that detect and track one target image, and display a 3D effects on top.
-
-We have a step-by-step tutorial in `Quick Start`. If you are new to MindAR, please check that out to understand some basic principles.
-
-![img](/img/demo/basic-demo.gif)
-
-## Try it out
-<a href={useBaseUrl('/samples/basic.html')} target="_blank">Live Demo</a>
-
-You can use the following target image for testing:
-
-<img src={cardImage} width="300" />
-
-## Source
 <code>
 {`
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@${customFields.libVersion}/dist/mindar-image-aframe.prod.js"></script>
-  </head>
-  <body>
-    <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/npm/mind-ar@${customFields.libVersion}/examples/image-tracking/assets/card-example/card.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-assets>
-	<img id="card" src="https://cdn.jsdelivr.net/npm/mind-ar@${customFields.libVersion}/examples/image-tracking/assets/card-example/card.png" />
-	<a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/npm/mind-ar@${customFields.libVersion}/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
-      </a-assets>\n
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>\n
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
-          animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-        >
-      </a-entity>
-    </a-scene>
-  </body>
+<head>
+  <style type="text/css" media="screen"> <!-- Style the template -->
+    html,body {
+      margin:0;
+      padding:0;
+    }
+    p {
+      color:#8f8f8f;
+      font-family:Arial;
+      font-size:18px;
+      line-height: 1;
+      margin:0.25em 0;
+    }
+    form {
+      width:50%;
+      margin:0 auto;
+      text-align: center;
+    }
+    input {
+      margin:15px auto;
+      padding:5px;
+      line-height:1.25;
+      font-size:18px;
+    }
+    textarea {
+      height:150px;
+      width:inherit;
+      font-family:Arial;
+      font-size:18px;
+    }
+  </style>
+<script type="text/javascript">
+// This script grabs data from the template form and generates new HTML source
+function createNewWindow() {
+  
+    // Set the document variables from the form
+    var title = document.getElementById('title').value
+    var videoSrc = document.getElementById('video_src').value
+    var notes = document.getElementById('notes').value
+    
+    // Create the new pagem set the title and style attributes
+    var newPage = "<html><head><link rel='stylesheet' type='text/css' media='screen' href='style.css' /><title>"
+    newPage += title;
+    newPage += "</title><style type='text/css'>html,body {margin:0;padding:0;}a {display: none;}#main {width:100%;margin:0 auto;height:100%;font-family:'Open Sans',sans-serif;}#main p,#main ol,#main li {font-size:1.8rem;font-size:18px;}#content {width:65%;margin:0 auto;padding:20px;background-color:rgba(225,225,225,0.75);}.video {position: relative;padding-bottom: 56.25%;padding-top: 30px; height: 0; overflow: hidden;}.video iframe,.video object,.video embed,.video video {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}</style></head>";
+    
+    // Set the body container divs and H1 title
+    newPage += "<body><div id='main'><div id='content'><h1>" + title + "</h1>";
+    
+    // Create the HTML5 video container. Source is pulled from the form. Only runs MP4 right now to keep things simple.
+    newPage += "<div class='video'>";
+    newPage += "<video controls><source src='" + videoSrc;
+    newPage += "' type='video/mp4'/>";
+    newPage += "</video></div <!--video-->"
+    
+    // End video container, add any notes from the form. Plaintext only.
+    newPage += "<p>" + notes;
+    newPage += "<p>";
+    newPage += "</body></html>";
+    
+    // Set the download action on the button.
+    var downlink = document.getElementById('downlink');
+    downlink.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(newPage);
+
+    var event = new MouseEvent('click');
+
+    downlink.dispatchEvent(event);
+}
+</script>
+</head>
+<body>
+  <!-- This is the FORM that users see in the browser -->
+  <form action="">
+      <input type="text" id="title" value="Class Name">
+      <p>This adds a header so you know what page you're showing.</p>
+      <br/>
+      <input type="text" id="video_src" value="Video file">
+      <p>The file to be embedded. Make sure to include the file extension!</p>
+      <p><i>Ex: video.mp4</i></p>
+      <br/>
+      <textarea id="notes" value="Notes/Instructions"></textarea>
+      <p>Any instructions to be displayed below the video on the page.</p>
+      <br/>
+      <input type="button" id="createHtml" value="Create and download page" onclick="createNewWindow();">
+
+      <a id="downlink" download="absent.html"></a>
+
+  </form>
+</body>
 </html>
 `}
 </code>
