@@ -2,7 +2,7 @@
 module.exports = {
   title: 'mind-ar-js',
   tagline: 'web augmented reality - augmented images',
-  url: 'https://hiukim.github.io',
+  url: 'https://arpic.in',
   baseUrl: '/mind-ar-js-doc/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
