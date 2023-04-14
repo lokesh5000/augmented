@@ -9,7 +9,7 @@ module.exports = {
 	  {
       type: 'category',
       label: 'Tools',
-      collapsed: true,
+      collapsed: false,
       items: [
 	'tools/compile'
       ]
