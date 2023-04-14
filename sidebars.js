@@ -69,6 +69,15 @@ module.exports = {
     },
     */
 	  
+	  {
+      type: 'category',
+      label: 'Tools',
+      collapsed: true,
+      items: [
+	'tools/compile'
+      ]
+    },
+	  
 	  
 	
     /*
