@@ -1,6 +1,6 @@
 ---
 id: home 
-title: MindAR 
+title: AR PIC
 sidebar_label: Home 
 slug: /
 ---
