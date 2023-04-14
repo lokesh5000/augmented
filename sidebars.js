@@ -1,8 +1,12 @@
 module.exports = {
   docs: [
-    {
-      type: 'doc',
-      id: 'home'
+     {
+      type: 'category',
+      label: 'Tools',
+      collapsed: true,
+      items: [
+	'tools/compile'
+      ]
     },
     /*{
       type: 'doc',
@@ -69,14 +73,7 @@ module.exports = {
     },
     */
 	  
-	  {
-      type: 'category',
-      label: 'Tools',
-      collapsed: true,
-      items: [
-	'tools/compile'
-      ]
-    },
+	
 	  
 	  
 	
