@@ -6,15 +6,7 @@ module.exports = {
       id: 'home'
     }, 
 	  
-	  {
-      type: 'category',
-      label: 'Tools',
-      collapsed: false,
-      items: [
-	'tools/compile'
-      ]
-    },
-	
+	 
 	  
 	  
 	  
