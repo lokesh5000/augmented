@@ -1,6 +1,12 @@
 module.exports = {
   docs: [
-     {
+     
+	 {
+      type: 'doc',
+      id: 'home'
+    }, 
+	  
+	  {
       type: 'category',
       label: 'Tools',
       collapsed: true,
