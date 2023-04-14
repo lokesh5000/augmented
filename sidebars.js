@@ -14,6 +14,19 @@ module.exports = {
 	'tools/compile'
       ]
     },
+	{
+      type: 'category',
+      label: 'Examples',
+      collapsed: true,
+      items: [
+	
+	'examples/basic',
+	
+      ]
+    },  
+	  
+	  
+	  
     /*{
       type: 'doc',
       id: 'installation'
