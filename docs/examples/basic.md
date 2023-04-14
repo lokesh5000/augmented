@@ -1,5 +1,7 @@
 
-
+id: basic 
+title: Basic 
+sidebar_label: Basic 
 ## Web Form
 
 To generate an HTML page automatically, please fill out the form below:
