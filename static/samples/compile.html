@@ -4,6 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css">
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@0.4.2/dist/mindar.prod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
 
     <script>
         Dropzone.autoDiscover = false;
@@ -11,10 +12,9 @@
         const compiler = new MINDAR.Compiler();
         let currentImageIndex = 0;
 
-        const download = (buffer) => {
-            var blob = new Blob([buffer]);
+        const download = (blob, filename) => {
             var aLink = window.document.createElement('a');
-            aLink.download = 'targets.mind';
+            aLink.download = filename;
             aLink.href = window.URL.createObjectURL(blob);
             aLink.click();
             window.URL.revokeObjectURL(aLink.href);
@@ -75,25 +75,43 @@
             })
         }
 
-        const compileNextImage = async (files) => {
+        const compileNextImage = async (files, dataList) => {
             if (currentImageIndex < files.length) {
                 const imageFile = files[currentImageIndex];
                 const image = await loadImage(imageFile);
                 let _start = new Date().getTime();
-                const dataList = await compiler.compileImageTargets([image], (progress) => {
+                const data = await compiler.compileImageTargets([image], (progress) => {
                     document.getElementById("progress").innerHTML = 'progress: ' + progress.toFixed(2) + "%";
                 });
                 console.log('exec time compile: ', new Date().getTime() - _start);
-                showData(dataList[0]);
+                showData(data[0]);
 
-                const exportedBuffer = await compiler.exportData();
-                download(exportedBuffer); // Download the file after processing this image
+                dataList.push(data[0]);
 
                 currentImageIndex++;
-                compileNextImage(files);
+                compileNextImage(files, dataList);
             } else {
                 // All images processed
             }
+        }
+
+        const downloadAllFiles = async (files) => {
+            const dataList = [];
+            currentImageIndex = 0;
+            await compileNextImage(files, dataList);
+
+            // All images processed, export all files
+            const zip = new JSZip();
+            for (let i = 0; i < dataList.length; i++) {
+                const exportedBuffer = await compiler.exportData();
+                zip.file(`targets_${i}.mind`, exportedBuffer);
+            }
+
+            // Generate a Blob containing the ZIP file
+            zip.generateAsync({ type: "blob" }).then(function (blob) {
+                // Trigger the download of the ZIP file
+                download(blob, 'targets.zip');
+            });
         }
 
         document.addEventListener('DOMContentLoaded', function (event) {
@@ -107,8 +125,7 @@
                 if (ext === 'mind') {
                     loadMindFile(files[0]);
                 } else {
-                    currentImageIndex = 0;
-                    compileNextImage(files);
+                    downloadAllFiles(files);
                 }
             });
         });
@@ -121,7 +138,7 @@
         <li>drop target images (e.g. .png) into the drop zone. (can drop multiple)</li>
         <li>click "Start". It could take a while (especially for large images)</li>
         <li>When done, some debug images will be shown, and you can visualize the feature points.</li>
-        <li>click "download" to get a targets.mind file, which is used in the AR webpage</li>
+        <li>click "download" to get a targets.zip file containing all converted files</li>
     </ol>
 </div>
 <button id="startButton">Start</button>
